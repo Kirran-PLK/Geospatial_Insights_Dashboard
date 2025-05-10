@@ -10,5 +10,6 @@ namespace Geospatial_Insights_Dashboard_Server.Domain.Entities
     {
         public int PestleId { get; set; }
         public string? PestleDescription { get; set; }
+        public ICollection<Insights> Insights { get; set; } = new List<Insights>();
     }
 }

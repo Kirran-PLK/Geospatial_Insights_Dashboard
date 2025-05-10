@@ -10,5 +10,8 @@ namespace Geospatial_Insights_Dashboard_Server.Domain.Entities
     {
         public int SectorId { get; set; }
         public string? SectorName { get; set; }
+
+        public ICollection<Insights> Insights { get; set; } = new List<Insights>();
+
     }
 }

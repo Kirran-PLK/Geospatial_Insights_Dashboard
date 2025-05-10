@@ -25,7 +25,7 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Data
         {
             modelBuilder.Entity<Insights>(entity =>
             {
-                entity.ToTable("insights"); 
+                entity.ToTable("insights");
 
                 entity.HasKey(e => e.InsightId);
                 entity.Property(e => e.InsightId).HasColumnName("insight_id");
@@ -57,8 +57,8 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Data
                 entity.Property(e => e.CityId).HasColumnName("city_id");
                 entity.Property(e => e.CityName).HasColumnName("city_name");
                 entity.Property(e => e.CountryId).HasColumnName("country_id");
-                entity.Property(e => e.Citylng).HasColumnName("city_lng");
-                entity.Property(e => e.Citylat).HasColumnName("city_lat");
+                entity.Property(e => e.Citylng).HasColumnName("citylng");
+                entity.Property(e => e.Citylat).HasColumnName("citylat");
             });
 
             modelBuilder.Entity<Countries>(entity =>
