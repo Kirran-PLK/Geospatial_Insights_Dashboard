@@ -41,5 +41,21 @@ namespace Geospatial_Insights_Dashboard_Server.API.Controllers
             var result = await _mediator.Send(new GetYearlyTrendsQuery(startYear, endYear));
             return Ok(result);
         }
+
+        [HttpGet("by-region-country")]
+        public async Task<IActionResult> GetInsightsByRegionCountry([FromQuery] string groupBy = "region", [FromQuery] int? year = null, [FromQuery] int? topicId = null, [FromQuery] int? sectorId = null)
+        {
+            var query = new InsightsByRegionCountryQuery
+            {
+                GroupBy = groupBy,
+                Year = year,
+                TopicId = topicId,
+                SectorId = sectorId
+            };
+
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
     }
 }

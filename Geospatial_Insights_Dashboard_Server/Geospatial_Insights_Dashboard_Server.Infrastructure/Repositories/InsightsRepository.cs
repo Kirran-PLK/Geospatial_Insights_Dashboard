@@ -57,6 +57,52 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories
                 .ToList();
         }
 
+        public async Task<List<RegionCountryInsightStatsDto>> GetInsightsGroupedByRegionOrCountryAsync(string groupBy, int? year, int? topicId, int? sectorId, CancellationToken cancellationToken)
+        {
+            var insights = _context.Insights
+                .Include(i => i.Region)
+                .Include(i => i.Country)
+                .AsQueryable();
+
+            if (year.HasValue)
+                insights = insights.Where(i => i.StartYear == year.Value);
+
+            if (topicId.HasValue)
+                insights = insights.Where(i => i.TopicId == topicId.Value);
+
+            if (sectorId.HasValue)
+                insights = insights.Where(i => i.SectorId == sectorId.Value);
+
+            IQueryable<RegionCountryInsightStatsDto> grouped = groupBy.ToLower() switch
+            {
+                "country" => insights
+                    .Where(i => i.Country != null)
+                    .GroupBy(i => i.Country.CountryName)
+                    .Select(g => new RegionCountryInsightStatsDto
+                    {
+                        GroupName = g.Key,
+                        InsightCount = g.Count(),
+                        TotalIntensity = g.Sum(x => x.Intensity ?? 0),
+                        TotalLikelihood = g.Sum(x => x.Likelihood ?? 0),
+                        TotalRelevance = g.Sum(x => x.Relevance ?? 0)
+                    }),
+
+                _ => insights
+                    .Where(i => i.Region != null)
+                    .GroupBy(i => i.Region.RegionName)
+                    .Select(g => new RegionCountryInsightStatsDto
+                    {
+                        GroupName = g.Key,
+                        InsightCount = g.Count(),
+                        TotalIntensity = g.Sum(x => x.Intensity ?? 0),
+                        TotalLikelihood = g.Sum(x => x.Likelihood ?? 0),
+                        TotalRelevance = g.Sum(x => x.Relevance ?? 0)
+                    }),
+            };
+
+            return await grouped.OrderByDescending(g => g.InsightCount).ToListAsync(cancellationToken);
+        }
+
 
 
 
