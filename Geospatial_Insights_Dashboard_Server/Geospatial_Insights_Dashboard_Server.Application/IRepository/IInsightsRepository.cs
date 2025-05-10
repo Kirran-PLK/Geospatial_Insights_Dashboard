@@ -8,7 +8,7 @@ namespace Geospatial_Insights_Dashboard_Server.Application.IRepository
         Task<IEnumerable<Insights>> GetAllInsightsAsync();
         Task<List<Insights>> GetInsightsWithGeoDataAsync(CancellationToken cancellationToken);
         Task<List<(int Year, double Intensity, double Likelihood, double Relevance)>> GetYearlyTrendsAsync(int startYear, int endYear, CancellationToken cancellationToken);
-        Task<List<RegionCountryInsightStatsDto>> GetInsightsGroupedByRegionOrCountryAsync(string groupBy, int? year, int? topicId, int? sectorId, CancellationToken cancellationToken);
+        Task<List<RegionCountryInsightStats>> GetInsightsGroupedByRegionOrCountryAsync(string groupBy, int? year, int? topicId, int? sectorId, CancellationToken cancellationToken);
 
     }
 }

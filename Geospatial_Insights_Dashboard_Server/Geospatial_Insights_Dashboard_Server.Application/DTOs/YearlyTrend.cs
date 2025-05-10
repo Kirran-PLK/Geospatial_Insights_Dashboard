@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Geospatial_Insights_Dashboard_Server.Application.DTOs
 {
-    public class YearlyTrendDto
+    public class YearlyTrend
     {
         public int Year { get; set; }
         public double? AvgIntensity { get; set; }

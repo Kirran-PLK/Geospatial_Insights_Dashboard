@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Geospatial_Insights_Dashboard_Server.Application.Handlers
 {
-    public class GeoMapInsightsQueryHandler : IRequestHandler<GeoMapInsightsQuery, List<GeoMapInsightDto>>
+    public class GeoMapInsightsQueryHandler : IRequestHandler<GeoMapInsightsQuery, List<GeoMapInsight>>
     {
         private readonly IInsightsRepository _repository;
 
@@ -19,11 +19,11 @@ namespace Geospatial_Insights_Dashboard_Server.Application.Handlers
             _repository = repository;
         }
 
-        public async Task<List<GeoMapInsightDto>> Handle(GeoMapInsightsQuery request, CancellationToken cancellationToken)
+        public async Task<List<GeoMapInsight>> Handle(GeoMapInsightsQuery request, CancellationToken cancellationToken)
         {
             var insights = await _repository.GetInsightsWithGeoDataAsync(cancellationToken);
 
-            var result = insights.Select(i => new GeoMapInsightDto
+            var result = insights.Select(i => new GeoMapInsight
             {
                 CityName = i.City?.CityName,
                 CityLat = i.City?.Citylat,

@@ -57,7 +57,7 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories
                 .ToList();
         }
 
-        public async Task<List<RegionCountryInsightStatsDto>> GetInsightsGroupedByRegionOrCountryAsync(string groupBy, int? year, int? topicId, int? sectorId, CancellationToken cancellationToken)
+        public async Task<List<RegionCountryInsightStats>> GetInsightsGroupedByRegionOrCountryAsync(string groupBy, int? year, int? topicId, int? sectorId, CancellationToken cancellationToken)
         {
             var insights = _context.Insights
                 .Include(i => i.Region)
@@ -73,12 +73,12 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories
             if (sectorId.HasValue)
                 insights = insights.Where(i => i.SectorId == sectorId.Value);
 
-            IQueryable<RegionCountryInsightStatsDto> grouped = groupBy.ToLower() switch
+            IQueryable<RegionCountryInsightStats> grouped = groupBy.ToLower() switch
             {
                 "country" => insights
                     .Where(i => i.Country != null)
                     .GroupBy(i => i.Country.CountryName)
-                    .Select(g => new RegionCountryInsightStatsDto
+                    .Select(g => new RegionCountryInsightStats
                     {
                         GroupName = g.Key,
                         InsightCount = g.Count(),
@@ -90,7 +90,7 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories
                 _ => insights
                     .Where(i => i.Region != null)
                     .GroupBy(i => i.Region.RegionName)
-                    .Select(g => new RegionCountryInsightStatsDto
+                    .Select(g => new RegionCountryInsightStats
                     {
                         GroupName = g.Key,
                         InsightCount = g.Count(),

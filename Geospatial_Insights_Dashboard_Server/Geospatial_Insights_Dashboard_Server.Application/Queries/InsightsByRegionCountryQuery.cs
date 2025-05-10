@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Geospatial_Insights_Dashboard_Server.Application.Queries
 {
-    public class InsightsByRegionCountryQuery : IRequest<List<RegionCountryInsightStatsDto>>
+    public class InsightsByRegionCountryQuery : IRequest<List<RegionCountryInsightStats>>
     {
         public string GroupBy { get; set; } = "region"; // Default is region
         public int? Year { get; set; }

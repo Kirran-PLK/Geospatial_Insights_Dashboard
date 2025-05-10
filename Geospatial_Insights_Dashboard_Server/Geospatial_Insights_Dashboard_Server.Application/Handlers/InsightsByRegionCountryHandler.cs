@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Geospatial_Insights_Dashboard_Server.Application.Handlers
 {
-    public class InsightsByRegionCountryHandler : IRequestHandler<InsightsByRegionCountryQuery, List<RegionCountryInsightStatsDto>>
+    public class InsightsByRegionCountryHandler : IRequestHandler<InsightsByRegionCountryQuery, List<RegionCountryInsightStats>>
     {
         private readonly IInsightsRepository _repository;
 
@@ -19,7 +19,7 @@ namespace Geospatial_Insights_Dashboard_Server.Application.Handlers
             _repository = repository;
         }
 
-        public async Task<List<RegionCountryInsightStatsDto>> Handle(
+        public async Task<List<RegionCountryInsightStats>> Handle(
             InsightsByRegionCountryQuery request,
             CancellationToken cancellationToken)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Geospatial_Insights_Dashboard_Server.Application.DTOs
 {
-    public class GeoMapInsightDto
+    public class GeoMapInsight
     {
         public string? CityName { get; set; }
         public decimal? CityLat { get; set; }

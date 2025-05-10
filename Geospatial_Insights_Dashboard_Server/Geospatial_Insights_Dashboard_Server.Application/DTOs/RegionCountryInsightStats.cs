@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Geospatial_Insights_Dashboard_Server.Application.DTOs
 {
-    public class RegionCountryInsightStatsDto
+    public class RegionCountryInsightStats
     {
         public string GroupName { get; set; } // Region name or Country name
         public int InsightCount { get; set; }

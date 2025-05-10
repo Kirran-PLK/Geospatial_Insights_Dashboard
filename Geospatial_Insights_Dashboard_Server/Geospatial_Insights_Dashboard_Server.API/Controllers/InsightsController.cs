@@ -16,13 +16,6 @@ namespace Geospatial_Insights_Dashboard_Server.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<InsightsDto>>> Get()
-        {
-            var result = await _mediator.Send(new GetAllInsightsQuery());
-            return Ok(result);
-        }
-
         [HttpGet("geo-map")]
         public async Task<IActionResult> GetGeoMapInsights()
         {

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Geospatial_Insights_Dashboard_Server.Application.Handlers
 {
-    public class GetYearlyTrendsQueryHandler : IRequestHandler<GetYearlyTrendsQuery, List<YearlyTrendDto>>
+    public class GetYearlyTrendsQueryHandler : IRequestHandler<GetYearlyTrendsQuery, List<YearlyTrend>>
     {
         private readonly IInsightsRepository _insightsRepository;
 
@@ -19,11 +19,11 @@ namespace Geospatial_Insights_Dashboard_Server.Application.Handlers
             _insightsRepository = insightsRepository;
         }
 
-        public async Task<List<YearlyTrendDto>> Handle(GetYearlyTrendsQuery request, CancellationToken cancellationToken)
+        public async Task<List<YearlyTrend>> Handle(GetYearlyTrendsQuery request, CancellationToken cancellationToken)
         {
             var trends = await _insightsRepository.GetYearlyTrendsAsync(request.StartYear, request.EndYear, cancellationToken);
 
-            return trends.Select(t => new YearlyTrendDto
+            return trends.Select(t => new YearlyTrend
             {
                 Year = t.Year,
                 AvgIntensity = t.Intensity,

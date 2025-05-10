@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Geospatial_Insights_Dashboard_Server.Application.Queries
 {
-    public class GeoMapInsightsQuery : IRequest<List<GeoMapInsightDto>>
+    public class GeoMapInsightsQuery : IRequest<List<GeoMapInsight>>
     {
         // No parameters needed for now
     }
