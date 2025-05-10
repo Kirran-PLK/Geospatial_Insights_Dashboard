@@ -29,5 +29,17 @@ namespace Geospatial_Insights_Dashboard_Server.API.Controllers
             var result = await _mediator.Send(new GeoMapInsightsQuery());
             return Ok(result);
         }
+
+        [HttpGet("yearly-trends")]
+        public async Task<IActionResult> GetYearlyTrends([FromQuery] int startYear, [FromQuery] int endYear)
+        {
+            if (startYear > endYear)
+            {
+                return BadRequest("Start year must be less than or equal to end year.");
+            }
+
+            var result = await _mediator.Send(new GetYearlyTrendsQuery(startYear, endYear));
+            return Ok(result);
+        }
     }
 }

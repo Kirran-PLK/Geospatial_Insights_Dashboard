@@ -36,6 +36,29 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories
                 .ToListAsync(cancellationToken);
         }
 
+        public async Task<List<(int Year, double Intensity, double Likelihood, double Relevance)>> GetYearlyTrendsAsync(int startYear, int endYear, CancellationToken cancellationToken)
+        {
+            var result = await _context.Insights
+                .Where(i => i.StartYear != null && i.StartYear >= startYear && i.StartYear <= endYear)
+                .GroupBy(i => i.StartYear.Value)
+                .Select(g => new
+                {
+                    Year = g.Key,
+                    Intensity = g.Average(i => i.Intensity ?? 0),
+                    Likelihood = g.Average(i => i.Likelihood ?? 0),
+                    Relevance = g.Average(i => i.Relevance ?? 0)
+                })
+                .OrderBy(r => r.Year)
+                .ToListAsync(cancellationToken); // Materializes the query
+
+            // Map to tuple after query execution (in-memory)
+            return result
+                .Select(x => (x.Year, x.Intensity, x.Likelihood, x.Relevance))
+                .ToList();
+        }
+
+
+
 
 
     }
