@@ -1,11 +1,11 @@
-﻿using Geospatial_Insights_Dashboard_Server.Application.IRepository;
+﻿using Geospatial_Insights_Dashboard_Server.Application.DTOs;
+using Geospatial_Insights_Dashboard_Server.Application.IRepository;
 using Geospatial_Insights_Dashboard_Server.Application.Queries;
-using Geospatial_Insights_Dashboard_Server.Domain.Entities;
 using MediatR;
 
 namespace Geospatial_Insights_Dashboard_Server.Application.Handlers
 {
-    public class GetAllInsightsQueryHandler : IRequestHandler<GetAllInsightsQuery, IEnumerable<Insights>>
+    public class GetAllInsightsQueryHandler : IRequestHandler<GetAllInsightsQuery, List<InsightsDto>>
     {
         private readonly IInsightsRepository _repository;
 
@@ -14,9 +14,31 @@ namespace Geospatial_Insights_Dashboard_Server.Application.Handlers
             _repository = repository;
         }
 
-        public async Task<IEnumerable<Insights>> Handle(GetAllInsightsQuery request, CancellationToken cancellationToken)
+        public async Task<List<InsightsDto>> Handle(GetAllInsightsQuery request, CancellationToken cancellationToken)
         {
-            return await _repository.GetAllInsightsAsync();
+            var insights = await _repository.GetAllInsightsAsync();
+
+            return insights.Select(i => new InsightsDto
+            {
+                InsightId = i.InsightId,
+                Title = i.Title,
+                Url = i.Url,
+                Impact = i.Impact,
+                Likelihood = i.Likelihood,
+                Intensity = i.Intensity,
+                Added = i.Added,
+                Published = i.Published,
+                StartYear = i.StartYear,
+                EndYear = i.EndYear,
+                Relevance = i.Relevance,
+                SectorId = i.SectorId,
+                TopicId = i.TopicId,
+                SwotId = i.SwotId,
+                PestleId = i.PestleId,
+                RegionId = i.RegionId,
+                CountryId = i.CountryId,
+                CityId = i.CityId
+            }).ToList();
         }
     }
 }

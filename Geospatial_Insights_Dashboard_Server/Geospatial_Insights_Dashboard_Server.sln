@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geospatial_Insights_Dashboard_Server.API", "..\..\..\Geospatial_Insights_Dashboard\Geospatial_Insights_Dashboard_Server\Geospatial_Insights_Dashboard_Server.API\Geospatial_Insights_Dashboard_Server.API.csproj", "{D8D3C692-B39D-C7AE-0463-58B933755D41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geospatial_Insights_Dashboard_Server.API", "Geospatial_Insights_Dashboard_Server.API\Geospatial_Insights_Dashboard_Server.API.csproj", "{51479D8F-ABAA-EBD6-E6A9-DC23F0288C5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geospatial_Insights_Dashboard_Server.Application", "..\..\..\Geospatial_Insights_Dashboard\Geospatial_Insights_Dashboard_Server\Geospatial_Insights_Dashboard_Server.Application\Geospatial_Insights_Dashboard_Server.Application.csproj", "{D1343D49-7AFC-E4E0-F7AF-C93CD5C4F8A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geospatial_Insights_Dashboard_Server.Application", "Geospatial_Insights_Dashboard_Server.Application\Geospatial_Insights_Dashboard_Server.Application.csproj", "{D8F602A7-3E18-9D1B-7852-429BAC455D9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geospatial_Insights_Dashboard_Server.Domain", "..\..\..\Geospatial_Insights_Dashboard\Geospatial_Insights_Dashboard_Server\Geospatial_Insights_Dashboard_Server.Domain\Geospatial_Insights_Dashboard_Server.Domain.csproj", "{EDBE5510-B4C9-A4C8-65E3-76DBE5BE17D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geospatial_Insights_Dashboard_Server.Domain", "Geospatial_Insights_Dashboard_Server.Domain\Geospatial_Insights_Dashboard_Server.Domain.csproj", "{BB3FD517-3116-FE50-B68C-471FE972D880}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geospatial_Insights_Dashboard_Server.Infrastructure", "..\..\..\Geospatial_Insights_Dashboard\Geospatial_Insights_Dashboard_Server\Geospatial_Insights_Dashboard_Server.Infrastructure\Geospatial_Insights_Dashboard_Server.Infrastructure.csproj", "{0B619A9A-03BE-9F71-4440-4DC671F79CDF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geospatial_Insights_Dashboard_Server.Infrastructure", "Geospatial_Insights_Dashboard_Server.Infrastructure\Geospatial_Insights_Dashboard_Server.Infrastructure.csproj", "{BB70C84E-DFA7-6C48-76C2-84FA78A168FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,22 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D8D3C692-B39D-C7AE-0463-58B933755D41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8D3C692-B39D-C7AE-0463-58B933755D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8D3C692-B39D-C7AE-0463-58B933755D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8D3C692-B39D-C7AE-0463-58B933755D41}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D1343D49-7AFC-E4E0-F7AF-C93CD5C4F8A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1343D49-7AFC-E4E0-F7AF-C93CD5C4F8A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1343D49-7AFC-E4E0-F7AF-C93CD5C4F8A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1343D49-7AFC-E4E0-F7AF-C93CD5C4F8A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EDBE5510-B4C9-A4C8-65E3-76DBE5BE17D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EDBE5510-B4C9-A4C8-65E3-76DBE5BE17D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EDBE5510-B4C9-A4C8-65E3-76DBE5BE17D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EDBE5510-B4C9-A4C8-65E3-76DBE5BE17D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B619A9A-03BE-9F71-4440-4DC671F79CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B619A9A-03BE-9F71-4440-4DC671F79CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B619A9A-03BE-9F71-4440-4DC671F79CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B619A9A-03BE-9F71-4440-4DC671F79CDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51479D8F-ABAA-EBD6-E6A9-DC23F0288C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51479D8F-ABAA-EBD6-E6A9-DC23F0288C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51479D8F-ABAA-EBD6-E6A9-DC23F0288C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51479D8F-ABAA-EBD6-E6A9-DC23F0288C5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8F602A7-3E18-9D1B-7852-429BAC455D9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8F602A7-3E18-9D1B-7852-429BAC455D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8F602A7-3E18-9D1B-7852-429BAC455D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8F602A7-3E18-9D1B-7852-429BAC455D9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB3FD517-3116-FE50-B68C-471FE972D880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB3FD517-3116-FE50-B68C-471FE972D880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB3FD517-3116-FE50-B68C-471FE972D880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB3FD517-3116-FE50-B68C-471FE972D880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB70C84E-DFA7-6C48-76C2-84FA78A168FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB70C84E-DFA7-6C48-76C2-84FA78A168FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB70C84E-DFA7-6C48-76C2-84FA78A168FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB70C84E-DFA7-6C48-76C2-84FA78A168FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

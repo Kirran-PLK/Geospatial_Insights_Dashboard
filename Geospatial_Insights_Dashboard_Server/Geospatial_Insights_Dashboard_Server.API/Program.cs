@@ -1,3 +1,4 @@
+using Geospatial_Insights_Dashboard_Server.Application.Handlers;
 using Geospatial_Insights_Dashboard_Server.Application.IRepository;
 using Geospatial_Insights_Dashboard_Server.Infrastructure.Data;
 using Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories;
@@ -16,6 +17,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<GetAllInsightsQueryHandler>());
 builder.Services.AddScoped<IInsightsRepository, InsightsRepository>();
 
 var app = builder.Build();

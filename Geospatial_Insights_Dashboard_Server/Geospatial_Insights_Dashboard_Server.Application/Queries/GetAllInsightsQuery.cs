@@ -1,4 +1,5 @@
-﻿using Geospatial_Insights_Dashboard_Server.Domain.Entities;
+﻿using Geospatial_Insights_Dashboard_Server.Application.DTOs;
+using Geospatial_Insights_Dashboard_Server.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Geospatial_Insights_Dashboard_Server.Application.Queries
 {
-    public class GetAllInsightsQuery : IRequest<IEnumerable<Insights>>
+    public class GetAllInsightsQuery : IRequest<List<InsightsDto>>
     {
     }
 }
