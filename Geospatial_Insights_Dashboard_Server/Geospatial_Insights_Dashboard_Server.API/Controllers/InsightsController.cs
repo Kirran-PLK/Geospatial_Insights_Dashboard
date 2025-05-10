@@ -22,5 +22,12 @@ namespace Geospatial_Insights_Dashboard_Server.API.Controllers
             var result = await _mediator.Send(new GetAllInsightsQuery());
             return Ok(result);
         }
+
+        [HttpGet("geo-map")]
+        public async Task<IActionResult> GetGeoMapInsights()
+        {
+            var result = await _mediator.Send(new GeoMapInsightsQuery());
+            return Ok(result);
+        }
     }
 }

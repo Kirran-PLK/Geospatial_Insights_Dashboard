@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,5 +27,13 @@ namespace Geospatial_Insights_Dashboard_Server.Domain.Entities
         public int? RegionId { get; set; }
         public int? CountryId { get; set; }
         public int? CityId { get; set; }
+
+        public Sectors? Sector { get; set; }
+        public Topics? Topic { get; set; }
+        public Swot? Swot { get; set; }
+        public Pestle? Pestle { get; set; }
+        public Regions? Region { get; set; }
+        public Countries? Country { get; set; }
+        public Cities? City { get; set; }
     }
 }
