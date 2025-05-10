@@ -1,0 +1,6 @@
+@Geospatial_Insights_Dashboard_Server.API_HostAddress = http://localhost:5231
+
+GET {{Geospatial_Insights_Dashboard_Server.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
