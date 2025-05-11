@@ -63,6 +63,29 @@ namespace Geospatial_Insights_Dashboard_Server.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("bubble-chart-data")]
+        public async Task<IActionResult> GetBubbleChartData([FromQuery] int? regionId, [FromQuery] int? countryId, [FromQuery] int? topicId, [FromQuery] int? year)
+        {
+            var result = await _mediator.Send(new BubbleChartInsightsQuery
+            {
+                RegionId = regionId,
+                CountryId = countryId,
+                TopicId = topicId,
+                Year = year
+            });
+
+            return Ok(result);
+        }
+
+        [HttpGet("filters")]
+        public async Task<IActionResult> GetFiltersMetadata()
+        {
+            var filters = await _mediator.Send(new GetFiltersMetadataQuery());
+            return Ok(filters);
+        }
+
+
+
 
     }
 }

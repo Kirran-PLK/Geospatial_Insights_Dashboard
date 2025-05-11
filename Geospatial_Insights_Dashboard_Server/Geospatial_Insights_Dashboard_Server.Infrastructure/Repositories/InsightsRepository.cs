@@ -129,6 +129,79 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories
             return result;
         }
 
+        public async Task<List<BubbleChartInsight>> GetBubbleChartDataAsync(int? regionId, int? countryId, int? topicId, int? year, CancellationToken cancellationToken)
+        {
+            var query = _context.Insights
+                .Include(i => i.Region)
+                .Include(i => i.Country)
+                .AsQueryable();
+
+            if (regionId.HasValue)
+                query = query.Where(i => i.RegionId == regionId.Value);
+
+            if (countryId.HasValue)
+                query = query.Where(i => i.CountryId == countryId.Value);
+
+            if (topicId.HasValue)
+                query = query.Where(i => i.TopicId == topicId.Value);
+
+            if (year.HasValue)
+                query = query.Where(i => i.StartYear == year.Value);
+
+            return await query
+                .Select(i => new BubbleChartInsight
+                {
+                    Likelihood = i.Likelihood,
+                    Intensity = i.Intensity,
+                    Relevance = i.Relevance,
+                    Title = i.Title,
+                    Impact = i.Impact,
+                    StartYear = i.StartYear,
+                    RegionName = i.Region.RegionName,
+                    CountryName = i.Country.CountryName
+                })
+                .Where(i => i.Likelihood.HasValue && i.Intensity.HasValue && i.Relevance.HasValue)
+                .ToListAsync(cancellationToken);
+        }
+
+        public async Task<FiltersMetadata> GetFiltersMetadataAsync(CancellationToken cancellationToken)
+        {
+            var topics = await _context.Topics.Select(t => t.TopicName).Distinct().ToListAsync(cancellationToken);
+            var sectors = await _context.Sectors.Select(s => s.SectorName).Distinct().ToListAsync(cancellationToken);
+            var swot = await _context.Swot.Select(s => s.SwotDescription).Distinct().ToListAsync(cancellationToken);
+            var pestle = await _context.Pestle.Select(p => p.PestleDescription).Distinct().ToListAsync(cancellationToken);
+            var regions = await _context.Regions.Select(r => r.RegionName).Distinct().ToListAsync(cancellationToken);
+            var countries = await _context.Countries.Select(c => c.CountryName).Distinct().ToListAsync(cancellationToken);
+            var cities = await _context.Cities.Select(c => c.CityName).Distinct().ToListAsync(cancellationToken);
+            var startYears = await _context.Insights
+                .Where(i => i.StartYear.HasValue)
+                .Select(i => i.StartYear.Value)
+                .Distinct()
+                .OrderBy(y => y)
+                .ToListAsync(cancellationToken);
+            var endYears = await _context.Insights
+                .Where(i => i.EndYear.HasValue)
+                .Select(i => i.EndYear.Value)
+                .Distinct()
+                .OrderBy(y => y)
+                .ToListAsync(cancellationToken);
+
+            return new FiltersMetadata
+            {
+                Topics = topics,
+                Sectors = sectors,
+                Swot = swot,
+                Pestle = pestle,
+                Regions = regions,
+                Countries = countries,
+                Cities = cities,
+                StartYears = startYears,
+                EndYears = endYears
+            };
+        }
+
+
+
 
 
 
