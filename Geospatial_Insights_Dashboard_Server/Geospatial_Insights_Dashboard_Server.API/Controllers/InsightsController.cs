@@ -77,6 +77,14 @@ namespace Geospatial_Insights_Dashboard_Server.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("filters")]
+        public async Task<IActionResult> GetFiltersMetadata()
+        {
+            var filters = await _mediator.Send(new GetFiltersMetadataQuery());
+            return Ok(filters);
+        }
+
+
 
 
     }
