@@ -14,6 +14,6 @@ namespace Geospatial_Insights_Dashboard_Server.Domain.Entities
 
         public Regions Region { get; set; } = null!;
         public ICollection<Cities> Cities { get; set; } = new List<Cities>();
-        public ICollection<Insights> Insights { get; set; } = new List<Insights>();
+        public ICollection<Insight> Insights { get; set; } = new List<Insight>();
     }
 }

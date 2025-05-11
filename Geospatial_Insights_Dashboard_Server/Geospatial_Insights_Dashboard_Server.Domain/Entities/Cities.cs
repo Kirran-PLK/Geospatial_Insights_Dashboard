@@ -16,6 +16,6 @@ namespace Geospatial_Insights_Dashboard_Server.Domain.Entities
         public int? CountryId { get; set; }
 
         public Countries? Country { get; set; }
-        public ICollection<Insights> Insights { get; set; } = new List<Insights>();
+        public ICollection<Insight> Insights { get; set; } = new List<Insight>();
     }
 }

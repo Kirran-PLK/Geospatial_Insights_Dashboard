@@ -21,14 +21,14 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Insights>> GetAllInsightsAsync()
+        public async Task<IEnumerable<Insight>> GetAllInsightsAsync()
         {
-            return await _context.Insights.ToListAsync();
+            return await _context.Insight.ToListAsync();
         }
 
-        public async Task<List<Insights>> GetInsightsWithGeoDataAsync(CancellationToken cancellationToken)
+        public async Task<List<Insight>> GetInsightsWithGeoDataAsync(CancellationToken cancellationToken)
         {
-            return await _context.Insights
+            return await _context.Insight
                 .Include(i => i.City)
                 .Include(i => i.Country)
                 .Include(i => i.Region)
@@ -38,7 +38,7 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories
 
         public async Task<List<(int Year, double Intensity, double Likelihood, double Relevance)>> GetYearlyTrendsAsync(int startYear, int endYear, CancellationToken cancellationToken)
         {
-            var result = await _context.Insights
+            var result = await _context.Insight
                 .Where(i => i.StartYear != null && i.StartYear >= startYear && i.StartYear <= endYear)
                 .GroupBy(i => i.StartYear.Value)
                 .Select(g => new
@@ -59,7 +59,7 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories
 
         public async Task<List<RegionCountryInsightStats>> GetInsightsGroupedByRegionOrCountryAsync(string groupBy, int? year, int? topicId, int? sectorId, CancellationToken cancellationToken)
         {
-            var insights = _context.Insights
+            var insights = _context.Insight
                 .Include(i => i.Region)
                 .Include(i => i.Country)
                 .AsQueryable();
@@ -105,7 +105,7 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories
 
         public async Task<List<TopicInsightCount>> GetInsightCountsByTopicAsync(int? regionId, int? year, CancellationToken cancellationToken)
         {
-            var query = _context.Insights
+            var query = _context.Insight
                 .Include(i => i.Topic)
                 .AsQueryable();
 
@@ -131,7 +131,7 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories
 
         public async Task<List<BubbleChartInsight>> GetBubbleChartDataAsync(int? regionId, int? countryId, int? topicId, int? year, CancellationToken cancellationToken)
         {
-            var query = _context.Insights
+            var query = _context.Insight
                 .Include(i => i.Region)
                 .Include(i => i.Country)
                 .AsQueryable();
@@ -173,13 +173,13 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories
             var regions = await _context.Regions.Select(r => r.RegionName).Distinct().ToListAsync(cancellationToken);
             var countries = await _context.Countries.Select(c => c.CountryName).Distinct().ToListAsync(cancellationToken);
             var cities = await _context.Cities.Select(c => c.CityName).Distinct().ToListAsync(cancellationToken);
-            var startYears = await _context.Insights
+            var startYears = await _context.Insight
                 .Where(i => i.StartYear.HasValue)
                 .Select(i => i.StartYear.Value)
                 .Distinct()
                 .OrderBy(y => y)
                 .ToListAsync(cancellationToken);
-            var endYears = await _context.Insights
+            var endYears = await _context.Insight
                 .Where(i => i.EndYear.HasValue)
                 .Select(i => i.EndYear.Value)
                 .Distinct()

@@ -13,6 +13,6 @@ namespace Geospatial_Insights_Dashboard_Server.Domain.Entities
         public string? RegionName { get; set; }
 
         public ICollection<Countries> Countries { get; set; } = new List<Countries>();
-        public ICollection<Insights> Insights { get; set; } = new List<Insights>();
+        public ICollection<Insight> Insights { get; set; } = new List<Insight>();
     }
 }

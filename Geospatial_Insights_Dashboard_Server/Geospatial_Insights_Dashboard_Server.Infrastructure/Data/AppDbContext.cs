@@ -15,7 +15,7 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Data
         public DbSet<Cities> Cities { get; set; }
         public DbSet<Countries> Countries { get; set; }
         public DbSet<Regions> Regions { get; set; }
-        public DbSet<Insights> Insights { get; set; }
+        public DbSet<Insight> Insight { get; set; }
         public DbSet<Pestle> Pestle { get; set; }
         public DbSet<Swot> Swot { get; set; }
         public DbSet<Sectors> Sectors { get; set; }
@@ -23,7 +23,7 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Insights>(entity =>
+            modelBuilder.Entity<Insight>(entity =>
             {
                 entity.ToTable("insights");
 

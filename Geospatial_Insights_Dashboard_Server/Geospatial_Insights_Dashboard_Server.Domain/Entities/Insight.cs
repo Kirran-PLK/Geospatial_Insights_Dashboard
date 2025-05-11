@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Geospatial_Insights_Dashboard_Server.Domain.Entities
 {
-    public class Insights
+    public class Insight
     {
         public int InsightId { get; set; }
         public string? Title { get; set; }
