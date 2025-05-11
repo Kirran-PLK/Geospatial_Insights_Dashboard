@@ -103,6 +103,33 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories
             return await grouped.OrderByDescending(g => g.InsightCount).ToListAsync(cancellationToken);
         }
 
+        public async Task<List<TopicInsightCount>> GetInsightCountsByTopicAsync(int? regionId, int? year, CancellationToken cancellationToken)
+        {
+            var query = _context.Insights
+                .Include(i => i.Topic)
+                .AsQueryable();
+
+            if (regionId.HasValue)
+                query = query.Where(i => i.RegionId == regionId.Value);
+
+            if (year.HasValue)
+                query = query.Where(i => i.StartYear == year.Value);
+
+            var result = await query
+                .Where(i => i.Topic != null)
+                .GroupBy(i => i.Topic.TopicName)
+                .Select(g => new TopicInsightCount
+                {
+                    TopicName = g.Key,
+                    InsightCount = g.Count()
+                })
+                .OrderByDescending(x => x.InsightCount)
+                .ToListAsync(cancellationToken);
+
+            return result;
+        }
+
+
 
 
 

@@ -50,5 +50,19 @@ namespace Geospatial_Insights_Dashboard_Server.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("by-topic")]
+        public async Task<IActionResult> GetInsightsByTopic([FromQuery] int? regionId, [FromQuery] int? year)
+        {
+            var query = new InsightsByTopicQuery
+            {
+                RegionId = regionId,
+                Year = year
+            };
+
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+
     }
 }
