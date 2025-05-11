@@ -129,6 +129,42 @@ namespace Geospatial_Insights_Dashboard_Server.Infrastructure.Repositories
             return result;
         }
 
+        public async Task<List<BubbleChartInsight>> GetBubbleChartDataAsync(int? regionId, int? countryId, int? topicId, int? year, CancellationToken cancellationToken)
+        {
+            var query = _context.Insights
+                .Include(i => i.Region)
+                .Include(i => i.Country)
+                .AsQueryable();
+
+            if (regionId.HasValue)
+                query = query.Where(i => i.RegionId == regionId.Value);
+
+            if (countryId.HasValue)
+                query = query.Where(i => i.CountryId == countryId.Value);
+
+            if (topicId.HasValue)
+                query = query.Where(i => i.TopicId == topicId.Value);
+
+            if (year.HasValue)
+                query = query.Where(i => i.StartYear == year.Value);
+
+            return await query
+                .Select(i => new BubbleChartInsight
+                {
+                    Likelihood = i.Likelihood,
+                    Intensity = i.Intensity,
+                    Relevance = i.Relevance,
+                    Title = i.Title,
+                    Impact = i.Impact,
+                    StartYear = i.StartYear,
+                    RegionName = i.Region.RegionName,
+                    CountryName = i.Country.CountryName
+                })
+                .Where(i => i.Likelihood.HasValue && i.Intensity.HasValue && i.Relevance.HasValue)
+                .ToListAsync(cancellationToken);
+        }
+
+
 
 
 
